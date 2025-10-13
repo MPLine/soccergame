@@ -3,7 +3,7 @@ extends RigidBody3D
 var state_factory := BallStateFactory.new()
 var current_state : BallState = null 
 var carrier : Player = null
-enum States {CARRIED, FREEFORM, SHOT}
+enum States {CARRIED, FREEFORM, MOVEMENT}
 @onready var ball =$CollisionShape3D/ball
 @onready var player_detection : Area3D =$player_detecttion
 

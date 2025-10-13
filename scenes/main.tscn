@@ -57,8 +57,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 [node name="ball" parent="." instance=ExtResource("1_jyhfs")]
 transform = Transform3D(-0.99787, 0, 0.0652289, 0, 1, 0, -0.0652289, 0, -0.99787, 0, 0.162442, 0)
 
-[node name="player" parent="." instance=ExtResource("2_jyhfs")]
+[node name="player" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338531, 1.21972)
+ball = NodePath("../ball")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

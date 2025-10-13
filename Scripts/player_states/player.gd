@@ -9,10 +9,10 @@ extends CharacterBody3D
 @export var is_active = false
 @export var  is_possession = false
 
-var ball 
+@export var ball = Node3D
 var speed = 1
-var has_ball: bool = false
-var pass_force = 8.0
+
+
 var shoot_force = 16.0
 
 var take_ball = false
@@ -35,7 +35,7 @@ func switch_state(state: States)->void:
 	if current_state != null:
 		current_state.queue_free()
 	current_state = state_factory.get_fresh_state(state)
-	current_state.setup(self)
+	current_state.setup(self,ball)
 	current_state.state_transition_requested.connect(switch_state.bind())
 	current_state.name = "PlayerState: "+ str(States)
 	call_deferred("add_child",current_state)
@@ -91,13 +91,7 @@ func switch_state(state: States)->void:
 	#is_active = false
 	#is_possession = false
 #
-#func pass_ball():
-	#var direction = -transform.basis.z.normalized()
-	#ball.apply_impulse(direction * pass_force)
-	#has_ball = false
-	#is_active = false
-	#is_possession = false
+#
 	
-func reset_state():
-	has_ball = false
-	velocity = Vector3.ZERO
+func has_ball()->bool:
+	return ball.carrier == self

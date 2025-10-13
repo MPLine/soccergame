@@ -22,3 +22,6 @@ func handle_movement(delta):
 		
 	if player.velocity != Vector3.ZERO and  not player.is_possession and player.shoot.is_pressed():
 		state_transition_requested.emit(Player.States.TACKLING)
+	
+	if player.has_ball() and player.is_possession and player.pas.is_pressed():
+		state_transition_requested.emit(player.States.PASSING)
