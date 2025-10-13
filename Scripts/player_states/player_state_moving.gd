@@ -1,0 +1,24 @@
+class_name PlayerStateMoving 
+extends PlayerState
+@export var move_speed = 1.5
+
+func _process(delta: float) -> void:
+	handle_movement(delta)
+
+func handle_movement(delta):
+	var input_dir = Vector3.ZERO
+	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	input_dir.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+
+	if input_dir != Vector3.ZERO:
+		input_dir = input_dir.normalized()
+		player.velocity.x = input_dir.x * move_speed
+		player.velocity.z = input_dir.z * move_speed
+		player.move_and_slide()
+		player.look_at(player.global_position + input_dir, Vector3.UP)
+	else:
+		player.velocity = Vector3.ZERO
+		
+	if player.velocity != Vector3.ZERO and  not player.is_possession and player.shoot.is_pressed():
+		state_transition_requested.emit(Player.States.TACKLING)
