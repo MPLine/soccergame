@@ -13,7 +13,7 @@ extends CharacterBody3D
 var speed = 1
 
 
-var shoot_force = 16.0
+
 
 var take_ball = false
 var ball_old_parent
@@ -30,7 +30,7 @@ var state_factory := PlayerStateFactory.new()
 func _ready() -> void:
 	ball = get_parent().get_child(1)
 	switch_state(States.MOVING)
-
+	look_at(ball.position)
 func switch_state(state: States)->void:
 	if current_state != null:
 		current_state.queue_free()
@@ -84,12 +84,7 @@ func switch_state(state: States)->void:
 	#elif has_ball and action == "pass":
 		#pass_ball()
 
-#func shoot_ball():
-	#var direction = -transform.basis.z.normalized()
-	#ball.apply_impulse(direction * shoot_force)
-	#has_ball = false
-	#is_active = false
-	#is_possession = false
+
 #
 #
 	

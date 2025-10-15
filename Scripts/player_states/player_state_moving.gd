@@ -3,7 +3,10 @@ extends PlayerState
 @export var move_speed = 1.5
 
 func _process(delta: float) -> void:
-	handle_movement(delta)
+	if player.is_AI:
+		return
+	else:
+		handle_movement(delta)
 
 func handle_movement(delta):
 	var input_dir = Vector3.ZERO
@@ -25,3 +28,6 @@ func handle_movement(delta):
 	
 	if player.has_ball() and player.is_possession and player.pas.is_pressed():
 		state_transition_requested.emit(player.States.PASSING)
+		
+	if player.has_ball() and player.is_possession and player.shoot.is_pressed():
+		state_transition_requested.emit(player.States.SHOOTING)

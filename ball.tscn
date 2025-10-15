@@ -6,6 +6,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_sugp2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_41u45"]
+radius = 0.556661
 
 [sub_resource type="Animation" id="Animation_41u45"]
 resource_name = "roll"

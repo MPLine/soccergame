@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqeu0y7dsqme5"]
+[gd_scene load_steps=13 format=3 uid="uid://bqeu0y7dsqme5"]
 
 [ext_resource type="PackedScene" uid="uid://chrqyv6a6x2ki" path="res://ball.tscn" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://b3h0up6y16wg" path="res://Scripts/camera_3d.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://virtual_joystick/virtual_joystick_scene.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bvriemru7hmyi" path="res://scenes/player/player.tscn" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://6avl48011g4j" path="res://asset/kick_btn.png" id="3_sugp2"]
@@ -34,8 +35,10 @@ albedo_color = Color(0, 0.462745, 0, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviironement"]
 environment = SubResource("Environment_0wfyh")
 
-[node name="Camera3D" type="Camera3D" parent="enviironement"]
-transform = Transform3D(0.999997, -0.00033016, 0.00223039, -0.00156148, 0.612186, 0.790712, -0.00162647, -0.790713, 0.612184, 0.176566, 3.13649, 3.57456)
+[node name="Camera3D" type="Camera3D" parent="enviironement" node_paths=PackedStringArray("ball")]
+transform = Transform3D(0.999997, -0.000330155, 0.00223039, -0.00116196, 0.772277, 0.635285, -0.00193222, -0.635286, 0.772274, 0.176566, 1.50367, 2.70602)
+script = ExtResource("1_tbgi4")
+ball = NodePath("../../ball")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="enviironement"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.555376, 0, 0)
@@ -50,15 +53,25 @@ mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
 
 [node name="terain" type="MeshInstance3D" parent="enviironement/StaticBody3D/CollisionShape3D"]
-transform = Transform3D(0.0196206, 0, 0, 0, 1, 0, 0, 0, 0.00734228, 0, 0.078591, 0)
+transform = Transform3D(0.0165855, 0, 0, 0, 1, 0, 0, 0, 0.00962205, 0, 0.078591, 0)
 mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="ball" parent="." instance=ExtResource("1_jyhfs")]
-transform = Transform3D(-0.99787, 0, 0.0652289, 0, 1, 0, -0.0652289, 0, -0.99787, 0, 0.162442, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162442, 0)
 
 [node name="player" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338531, 1.21972)
+transform = Transform3D(0.989636, 0, 0.143596, 0, 1, 0, -0.143596, 0, 0.989636, 0, 0.338531, -1.43508)
+ball = NodePath("../ball")
+
+[node name="player2" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338531, 3.06294)
+is_AI = true
+ball = NodePath("../ball")
+
+[node name="player3" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-0.0131071, 0, 0.999914, 0, 1, 0, -0.999914, 0, -0.0131071, 5.0538, 0.338531, -0.0473213)
+is_AI = true
 ball = NodePath("../ball")
 
 [node name="UI" type="CanvasLayer" parent="."]

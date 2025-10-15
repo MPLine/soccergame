@@ -13,13 +13,14 @@ func _enter_tree() -> void:
 
 	
 func pass_ball():
-	PlayerStatePass
+	
 	var direction = -player.basis.z.normalized()
 	player.ball.freeze = false
 	player.ball.apply_impulse(direction * pass_force)
 	#has_ball = false
 	player.is_active = false
 	player.is_possession = false
+	player.is_AI = true
 	print("passing")
 	print(player.is_possession)
 
