@@ -9,17 +9,13 @@ func _physics_process(delta: float) -> void:
 	if ball.has_carrier:
 		var desired_position = ball.carrier.global_position 
 		global_position.x = ball.carrier.global_position.x
-		global_position.z = ball.carrier.global_position.z + 4
-		global_position.y = 3
+		global_position.z = ball.carrier.global_position.z + 3
+		global_position.y = 5
 		
-		print("has_carrier")
+
 	else:
 		global_position.x = ball.global_position.x
-		global_position.z = ball.global_position.z + 4
-		global_position.y = 3
+		global_position.z = ball.global_position.z + 3
+		global_position.y = 5
 		
 	
-		print("don't have carrier")
-
-
-		

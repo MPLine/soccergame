@@ -8,9 +8,9 @@ extends CharacterBody3D
 @export var is_AI = false
 @export var is_active = false
 @export var  is_possession = false
-
+var squad = []
 @export var ball = Node3D
-var speed = 1
+var speed = 1.5
 
 
 
@@ -26,16 +26,30 @@ var ball_new_parent
 enum States {MOVING, TACKLING, PASSING, SHOOTING}
 var current_state: PlayerState = null
 var state_factory := PlayerStateFactory.new()
+var AI_behavoir := AIBehavoir.new()
+var last_position := Vector3.ZERO
+var weigth_Sterring :=0.0
+@onready var goal = $"../goal1"
 
 func _ready() -> void:
 	ball = get_parent().get_child(1)
 	switch_state(States.MOVING)
 	look_at(ball.position)
+	setup_AI_Behavoir()
+	last_position = position
+	squad.append(teammate1)
+	squad.append(teammate2)
+	
+func setup_AI_Behavoir()->void:
+	AI_behavoir.setup(self,ball)
+	AI_behavoir.name = "AI_Behavoir"
+	add_child(AI_behavoir)
+	
 func switch_state(state: States)->void:
 	if current_state != null:
 		current_state.queue_free()
 	current_state = state_factory.get_fresh_state(state)
-	current_state.setup(self,ball)
+	current_state.setup(self,ball, AI_behavoir)
 	current_state.state_transition_requested.connect(switch_state.bind())
 	current_state.name = "PlayerState: "+ str(States)
 	call_deferred("add_child",current_state)
@@ -86,7 +100,16 @@ func switch_state(state: States)->void:
 
 
 #
-#
-	
+func distance_check():
+	if position.distance_to(ball.position)<teammate1.position.distance_to(ball.position) and position.distance_to(ball.position)<teammate2.position.distance_to(ball.position):
+		weigth_Sterring =100
+		return true
 func has_ball()->bool:
 	return ball.carrier == self
+
+func is_teammate():
+	for team in squad:
+		return team.is_possession
+			
+		
+		

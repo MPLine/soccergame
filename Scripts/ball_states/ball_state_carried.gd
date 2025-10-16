@@ -5,6 +5,7 @@ func _enter_tree() -> void:
 	assert(carrier!=null)
 	ball.freeze = true
 	carrier.is_possession = true
+	
 	ball.has_carrier = true
 func _process(delta: float) -> void:
 

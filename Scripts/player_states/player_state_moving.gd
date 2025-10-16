@@ -4,8 +4,9 @@ extends PlayerState
 
 func _process(delta: float) -> void:
 	if player.is_AI:
-		return
+		AI_Behavoir._process_ai(delta)
 	else:
+		
 		handle_movement(delta)
 
 func handle_movement(delta):
