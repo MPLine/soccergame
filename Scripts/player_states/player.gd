@@ -11,7 +11,7 @@ extends CharacterBody3D
 var squad = []
 @export var ball = Node3D
 var speed = 1.5
-
+var AI_speed = 150
 
 
 
@@ -29,7 +29,7 @@ var state_factory := PlayerStateFactory.new()
 var AI_behavoir := AIBehavoir.new()
 var last_position := Vector3.ZERO
 var weigth_Sterring :=0.0
-@onready var goal = $"../goal1"
+@export var goal_target = Node3D
 
 func _ready() -> void:
 	ball = get_parent().get_child(1)

@@ -22,3 +22,5 @@ func _process(delta: float) -> void:
 		state_transition_request.emit(ball.States.CARRIED)
 	elif (carrier.pas.is_pressed() or carrier.shoot.is_pressed()) and carrier.is_possession:
 		state_transition_request.emit(ball.States.FREEFORM)
+		
+	

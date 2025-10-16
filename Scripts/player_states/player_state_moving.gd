@@ -32,3 +32,4 @@ func handle_movement(delta):
 		
 	if player.has_ball() and player.is_possession and player.shoot.is_pressed():
 		state_transition_requested.emit(player.States.SHOOTING)
+	 

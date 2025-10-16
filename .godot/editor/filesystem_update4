@@ -1,0 +1,9 @@
+res://scenes/main.tscn
+res://scenes/player/player.tscn
+res://ball.tscn
+res://scenes/goal_1.tscn
+res://Scripts/player_states/ai_behavoir.gd
+res://Scripts/player_states/player.gd
+res://Scripts/ball_states/ball_state_movement.gd
+res://Scripts/goal.gd
+res://Scripts/player_states/player_state_moving.gd
