@@ -11,13 +11,15 @@ func _enter_tree() -> void:
 
 
 func shoot_ball():
-	var direction = -player.transform.basis.z.normalized()
-	ball.apply_impulse(direction * shoot_force)
-	player.is_active = false
-	player.is_possession = false
-	player.is_AI = true
-	print("shoot")
-	print(player.is_possession)
+	print("pass")
+	var direction = -player.basis.z.normalized()
+	player.ball.freeze = false
+	player.ball.apply_impulse(direction * shoot_force)
+	#player.is_active = false
+	#player.is_possession = false
+	#
+	#print("shoot")
+	#print(player.is_possession)
 	
 
 	
@@ -25,4 +27,6 @@ func shoot_ball():
 func _process(delta: float) -> void:
 
 	if Time.get_ticks_msec() - time_start_tackle> duration_takle:
+		player.is_possession = false
+		player.is_AI = true
 		state_transition_requested.emit(player.States.MOVING)

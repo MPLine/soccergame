@@ -19,7 +19,7 @@ extends CharacterBody3D
 enum States {MOVING, TACKLING, PASSING, SHOOTING}
 
 var squad = []
-var speed = 2
+var speed = 1.2
 var AI_speed = 150
 var take_ball = false
 var ball_old_parent

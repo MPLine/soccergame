@@ -2,12 +2,13 @@ class_name  GoalBehavior
 extends Node3D
 
 
-@onready var shoot_area =$shoot_area
+@export var shoot_area =Node3D
 func _ready()-> void:
 	shoot_area.body_entered.connect(shoot.bind())
 	
 
 func shoot(body: Player)->void:
 	if body.is_possession and body.is_AI:
-		body.AI_speed *= -1
+		body.speed = 0
+
 	pass

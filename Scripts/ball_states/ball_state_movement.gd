@@ -20,7 +20,7 @@ func _enter_tree() -> void:
 func _process(delta: float) -> void:
 	if Time.get_ticks_msec() - time_start_tackle> duration_takle:
 		state_transition_request.emit(ball.States.CARRIED)
-	elif (carrier.pas.is_pressed() or carrier.shoot.is_pressed()) and carrier.is_possession:
+	if (carrier.pas.is_pressed() or carrier.shoot.is_pressed()) and carrier.is_possession:
 		state_transition_request.emit(ball.States.FREEFORM)
 		
 	

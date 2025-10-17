@@ -4,7 +4,7 @@ const AI_TICK_FREKENCY :=200
 var ball: Ball = null
 var player : Player =null
 var AI_time_stick:= Time.get_ticks_msec()
-
+var direction
 func _ready() -> void:
 	var AI_time_stick:= Time.get_ticks_msec() + randi_range(0,AI_TICK_FREKENCY)
 	
@@ -30,12 +30,11 @@ func ai_movement(delta)->void:
 	pass
 
 func get_onduty_streering_force()->Vector3:
-	return player.weight_on_duty_sterring * player.position.direction_to(ball.position)
 	
-
-
-
-	
-	
-
-		#
+	if player.is_possession:
+		direction = player.weight_on_duty_sterring * player.position.direction_to(player.goal_target.position)
+		player.look_at(player.goal_target.position)
+	else:
+		direction = player.weight_on_duty_sterring * player.position.direction_to(ball.position)
+		
+	return direction

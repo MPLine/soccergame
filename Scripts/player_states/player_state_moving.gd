@@ -1,6 +1,6 @@
 class_name PlayerStateMoving 
 extends PlayerState
-@export var move_speed = 1.5
+@export var move_speed = 2.0
 
 func _physics_process(delta: float) -> void:
 	
@@ -9,7 +9,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		
 		handle_movement(delta)
+		
 	player.move_and_slide()
+	
 func handle_movement(delta):
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

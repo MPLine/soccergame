@@ -13,18 +13,18 @@ func _enter_tree() -> void:
 
 	
 func pass_ball():
-	
+	print("pass")
 	var direction = -player.basis.z.normalized()
 	player.ball.freeze = false
 	player.ball.apply_impulse(direction * pass_force)
 	#has_ball = false
-	player.is_active = false
-	player.is_possession = false
-	player.is_AI = true
-	print("passing")
-	print(player.is_possession)
+	#player.is_active = false
+	#
+
 
 func _process(delta: float) -> void:
 
 	if Time.get_ticks_msec() - time_start_tackle> duration_takle:
+		player.is_possession = false
+		player.is_AI = true
 		state_transition_requested.emit(player.States.MOVING)
