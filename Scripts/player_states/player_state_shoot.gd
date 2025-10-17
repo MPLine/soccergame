@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 
 
 func shoot_ball():
-	print("pass")
+	print("shoot")
 	var direction = -player.basis.z.normalized()
 	player.ball.freeze = false
 	player.ball.apply_impulse(direction * shoot_force)
@@ -28,5 +28,6 @@ func _process(delta: float) -> void:
 
 	if Time.get_ticks_msec() - time_start_tackle> duration_takle:
 		player.is_possession = false
-		player.is_AI = true
+		if ball.carrier.is_player:
+			ball.carrier.is_AI = true
 		state_transition_requested.emit(player.States.MOVING)

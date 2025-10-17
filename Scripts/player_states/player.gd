@@ -11,7 +11,7 @@ extends CharacterBody3D
 @export var  is_possession = false
 @export var goal_target = Node3D
 @export var ball = Node3D
-
+@export var is_player = false
 @onready var shoot = $"../UI/kick"
 @onready var pas = $"../UI/pass"
 @onready var target = $CollisionShape3D/body/target
@@ -20,7 +20,7 @@ enum States {MOVING, TACKLING, PASSING, SHOOTING}
 
 var squad = []
 var speed = 1.2
-var AI_speed = 150
+
 var take_ball = false
 var ball_old_parent
 var ball_new_parent
@@ -83,3 +83,8 @@ func set_on_duty_weigth()->void:
 	
 	for i in range(	AI_playerS.size()):
 		AI_playerS[i].weight_on_duty_sterring = 1 - ease(float(i)/10.0,0.1)
+
+func is_team_possession():
+	for s in squad:
+		if s.is_possession:
+			return true

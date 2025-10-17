@@ -9,6 +9,7 @@ func _ready()-> void:
 
 func shoot(body: Player)->void:
 	if body.is_possession and body.is_AI:
-		body.speed = 0
+		body.ball.switch_state(body.ball.States.FREEFORM)
+		body.switch_state(body.States.SHOOTING)
 
 	pass

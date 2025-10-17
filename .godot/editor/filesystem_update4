@@ -11,3 +11,4 @@ res://Scripts/camera_3d.gd
 res://Scripts/player_states/player_state_pass.gd
 res://Scripts/ball_states/ball_state_carried.gd
 res://Scripts/player_states/player_state_shoot.gd
+res://Scripts/ball_states/ball_state_freeForm.gd

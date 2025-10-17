@@ -26,5 +26,6 @@ func _process(delta: float) -> void:
 
 	if Time.get_ticks_msec() - time_start_tackle> duration_takle:
 		player.is_possession = false
-		player.is_AI = true
+		if ball.carrier.is_player:
+			ball.carrier.is_AI = true
 		state_transition_requested.emit(player.States.MOVING)

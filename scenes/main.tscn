@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqeu0y7dsqme5"]
+[gd_scene load_steps=16 format=3 uid="uid://bqeu0y7dsqme5"]
 
 [ext_resource type="PackedScene" uid="uid://chrqyv6a6x2ki" path="res://ball.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://b3h0up6y16wg" path="res://Scripts/camera_3d.gd" id="1_tbgi4"]
@@ -30,6 +30,9 @@ albedo_color = Color(0.251348, 0.119316, 8.42288e-08, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 albedo_color = Color(0, 0.462745, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
+albedo_color = Color(0.129412, 0, 0.458824, 1)
+
 [node name="main" type="Node3D"]
 
 [node name="enviironement" type="Node3D" parent="."]
@@ -59,7 +62,7 @@ mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="ball" parent="." instance=ExtResource("1_jyhfs")]
-transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, -8.35489, 0.693, 1.95718)
+transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, 0, 0.693, 0)
 metadata/_edit_group_ = true
 
 [node name="player" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
@@ -70,15 +73,23 @@ teammate3 = NodePath("../player4")
 is_AI = true
 goal_target = NodePath("../goal2")
 ball = NodePath("../ball")
+metadata/_edit_group_ = true
+
+[node name="body" parent="player/CollisionShape3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="player2" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -7.10036, 1.01552, 2.79829)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -0.126035, 0.87851, 3.33281)
 teammate1 = NodePath("../player")
 teammate2 = NodePath("../player3")
 teammate3 = NodePath("../player4")
 is_AI = true
 goal_target = NodePath("../goal2")
 ball = NodePath("../ball")
+metadata/_edit_group_ = true
+
+[node name="body" parent="player2/CollisionShape3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="player3" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
 transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 5.02523, 1.01552, -0.134542)
@@ -88,6 +99,10 @@ teammate3 = NodePath("../player4")
 is_AI = true
 goal_target = NodePath("../goal2")
 ball = NodePath("../ball")
+metadata/_edit_group_ = true
+
+[node name="body" parent="player3/CollisionShape3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="player4" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
 transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 10.8, 1.01552, -0.134542)
@@ -97,6 +112,10 @@ teammate3 = NodePath("../player3")
 is_AI = true
 goal_target = NodePath("../goal2")
 ball = NodePath("../ball")
+metadata/_edit_group_ = true
+
+[node name="body" parent="player4/CollisionShape3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="player5" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
 transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -7.99665, 1.01552, -5.87422)
@@ -106,32 +125,36 @@ teammate3 = NodePath("../player8")
 is_AI = true
 goal_target = NodePath("../goal1")
 ball = NodePath("../ball")
+is_player = true
 
 [node name="player6" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -8.6004, 1.01552, 6.07586)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -8.08575, 1.01552, 5.70385)
 teammate1 = NodePath("../player5")
 teammate2 = NodePath("../player7")
 teammate3 = NodePath("../player8")
 is_AI = true
 goal_target = NodePath("../goal1")
 ball = NodePath("../ball")
+is_player = true
 
 [node name="player7" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -10.3177, 1.01552, -7.09218)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -11.4407, 1.01552, 0.1832)
 teammate1 = NodePath("../player5")
 teammate2 = NodePath("../player6")
 teammate3 = NodePath("../player8")
 is_AI = true
 goal_target = NodePath("../goal1")
 ball = NodePath("../ball")
+is_player = true
 
 [node name="player8" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "goal_target", "ball") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -4.37477, 1.01552, 0.0027473)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -3.363, 1.01552, -0.39912)
 teammate1 = NodePath("../player5")
 teammate2 = NodePath("../player6")
 teammate3 = NodePath("../player7")
 goal_target = NodePath("../goal1")
 ball = NodePath("../ball")
+is_player = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -165,7 +188,11 @@ script = ExtResource("7_o6xl0")
 shoot_area = NodePath("shoot_area")
 
 [node name="CollisionShape3D" parent="goal2/shoot_area" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99164, 0, 0.116946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2166, 0, 0.034258)
 
+[editable path="player"]
+[editable path="player2"]
+[editable path="player3"]
+[editable path="player4"]
 [editable path="goal1"]
 [editable path="goal2"]
