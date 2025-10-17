@@ -25,7 +25,7 @@ size = Vector3(2.17184, 0.156738, 2.03968)
 [sub_resource type="PlaneMesh" id="PlaneMesh_jyhfs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_color = Color(0.854902, 0.462745, 0, 1)
+albedo_color = Color(0.251348, 0.119316, 8.42288e-08, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 albedo_color = Color(0, 0.462745, 0, 1)
@@ -60,11 +60,11 @@ mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="ball" parent="." instance=ExtResource("1_jyhfs")]
-transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, 5.38556, 0.693379, -3.12772)
+transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, 5.24105, 0.693379, 0.0437605)
 metadata/_edit_group_ = true
 
 [node name="player" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 2.32918, 1.01552, -4.18345)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 1.04318, 1.01552, -4.18345)
 teammate1 = NodePath("../player2")
 teammate2 = NodePath("../player3")
 is_AI = true
@@ -72,7 +72,7 @@ ball = NodePath("../ball")
 goal_target = NodePath("../goal1")
 
 [node name="player2" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 0.813858, 1.01552, 3.35301)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -1.57925, 1.01552, 4.34666)
 teammate1 = NodePath("../player")
 teammate2 = NodePath("../player3")
 is_AI = true
@@ -80,10 +80,9 @@ ball = NodePath("../ball")
 goal_target = NodePath("../goal1")
 
 [node name="player3" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 6.8657, 1.01552, 0.545767)
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 5.15299, 1.01552, -0.782548)
 teammate1 = NodePath("../player")
 teammate2 = NodePath("../player2")
-is_AI = true
 ball = NodePath("../ball")
 goal_target = NodePath("../goal1")
 

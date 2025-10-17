@@ -2,13 +2,14 @@ class_name PlayerStateMoving
 extends PlayerState
 @export var move_speed = 1.5
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	
 	if player.is_AI:
 		AI_Behavoir._process_ai(delta)
 	else:
 		
 		handle_movement(delta)
-
+	player.last_valid_position = player.global_transform.origin
 func handle_movement(delta):
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

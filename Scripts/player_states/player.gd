@@ -28,8 +28,10 @@ var current_state: PlayerState = null
 var state_factory := PlayerStateFactory.new()
 var AI_behavoir := AIBehavoir.new()
 var last_position := Vector3.ZERO
-var weigth_Sterring :=0.0
+var weigth_Sterring :=20.0
 @export var goal_target = Node3D
+@onready var teamate_distance =$teamate_distance
+var last_valid_position = global_transform.origin
 
 func _ready() -> void:
 	ball = get_parent().get_child(1)
@@ -102,14 +104,20 @@ func switch_state(state: States)->void:
 #
 func distance_check():
 	if position.distance_to(ball.position)<teammate1.position.distance_to(ball.position) and position.distance_to(ball.position)<teammate2.position.distance_to(ball.position):
-		weigth_Sterring =100
-		return true
+	
+		weigth_Sterring =150
+	else: 
+		weigth_Sterring = 50
+	return weigth_Sterring
 func has_ball()->bool:
 	return ball.carrier == self
 
-func is_teammate():
+func is_teammate_possession():
 	for team in squad:
-		return team.is_possession
-			
-		
-		
+		if team.is_possession:
+			return true
+
+func is_teammate(body):
+	for team in squad:
+		if team == body:
+			return true

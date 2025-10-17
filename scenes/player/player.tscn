@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvriemru7hmyi"]
+[gd_scene load_steps=10 format=3 uid="uid://bvriemru7hmyi"]
 
 [ext_resource type="Script" uid="uid://duo2gr1dcoom8" path="res://Scripts/player_states/player.gd" id="1_8afob"]
 
@@ -19,6 +19,9 @@ albedo_color = Color(1, 1, 1, 0.0117647)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dovo2"]
 size = Vector3(0.249512, 0.166504, 0.120117)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8afob"]
+height = 0.56459
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_8afob")
@@ -43,3 +46,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109863, -0.167725, -0.206543)
 shape = SubResource("BoxShape3D_dovo2")
+
+[node name="teamate_distance" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teamate_distance"]
+transform = Transform3D(1.95697, 0, 0, 0, 0.652325, 0, 0, 0, 1.95697, 0, 0.0543237, 0)
+shape = SubResource("CylinderShape3D_8afob")
+debug_color = Color(0.94446, 0.232822, 0.119829, 0.972549)

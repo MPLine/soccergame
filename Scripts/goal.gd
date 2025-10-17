@@ -9,6 +9,5 @@ func _ready()-> void:
 
 func shoot(body: Player)->void:
 	if body.is_possession and body.is_AI:
-		print("enter shoot area body")
 		body.AI_speed *= -1
 	pass
