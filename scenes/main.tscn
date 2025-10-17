@@ -37,10 +37,9 @@ albedo_color = Color(0, 0.462745, 0, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="enviironement"]
 environment = SubResource("Environment_0wfyh")
 
-[node name="Camera3D" type="Camera3D" parent="enviironement" node_paths=PackedStringArray("ball")]
-transform = Transform3D(0.999997, -0.000330155, 0.00223039, -0.00116196, 0.772277, 0.635285, -0.00193222, -0.635286, 0.772274, 0.176566, 1.50367, 2.70602)
+[node name="Camera3D" type="Camera3D" parent="enviironement"]
+transform = Transform3D(0.999989, 0.00372797, -0.00270284, -0.00135313, 0.798969, 0.601371, 0.00440138, -0.601361, 0.798966, -0.192852, 5.62432, 7.49881)
 script = ExtResource("1_tbgi4")
-ball = NodePath("../../ball")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="enviironement"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.555376, 0.415047, 0)
@@ -50,41 +49,81 @@ transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -0.0561203, 0)
 shape = SubResource("BoxShape3D_sugp2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enviironement/StaticBody3D/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0325605, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000299088, -0.0325605, -0.00239263)
 mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
 
 [node name="terain" type="MeshInstance3D" parent="enviironement/StaticBody3D/CollisionShape3D"]
-transform = Transform3D(0.0165855, 0, 0, 0, 1, 0, 0, 0, 0.00962205, 0, 0.078591, 0.000260987)
+transform = Transform3D(0.0241895, 0, 0, 0, 1, 0, 0, 0, 0.0134766, 0, 0.078591, 0.000260987)
 mesh = SubResource("PlaneMesh_jyhfs")
 surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
 
 [node name="ball" parent="." instance=ExtResource("1_jyhfs")]
-transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, 5.24105, 0.693379, 0.0437605)
+transform = Transform3D(1.26479, 0, 0, 0, 1.55292, -0.0106179, 0, 0.0130371, 1.26475, 0, 0.693, 0)
 metadata/_edit_group_ = true
 
-[node name="player" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 1.04318, 1.01552, -4.18345)
+[node name="player" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 1.16837, 1.01552, -3.53544)
 teammate1 = NodePath("../player2")
 teammate2 = NodePath("../player3")
+teammate3 = NodePath("../player4")
 is_AI = true
 ball = NodePath("../ball")
-goal_target = NodePath("../goal1")
 
-[node name="player2" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -1.57925, 1.01552, 4.34666)
+[node name="player2" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 1.07818, 1.01552, 3.63324)
 teammate1 = NodePath("../player")
 teammate2 = NodePath("../player3")
+teammate3 = NodePath("../player4")
 is_AI = true
 ball = NodePath("../ball")
-goal_target = NodePath("../goal1")
 
-[node name="player3" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "ball", "goal_target") instance=ExtResource("2_jyhfs")]
-transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 5.15299, 1.01552, -0.782548)
+[node name="player3" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 4.57023, 1.01552, -0.134542)
 teammate1 = NodePath("../player")
 teammate2 = NodePath("../player2")
+teammate3 = NodePath("../player4")
+is_AI = true
 ball = NodePath("../ball")
-goal_target = NodePath("../goal1")
+
+[node name="player4" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, 8.30054, 1.01552, -0.134542)
+teammate1 = NodePath("../player")
+teammate2 = NodePath("../player2")
+teammate3 = NodePath("../player3")
+is_AI = true
+ball = NodePath("../ball")
+
+[node name="player5" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -5.72286, 1.01552, -4.87451)
+teammate1 = NodePath("../player7")
+teammate2 = NodePath("../player6")
+teammate3 = NodePath("../player8")
+is_AI = true
+ball = NodePath("../ball")
+
+[node name="player6" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -5.6347, 1.01552, 4.93915)
+teammate1 = NodePath("../player5")
+teammate2 = NodePath("../player7")
+teammate3 = NodePath("../player8")
+is_AI = true
+ball = NodePath("../ball")
+
+[node name="player7" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -8.25782, 1.01552, -0.060076)
+teammate1 = NodePath("../player5")
+teammate2 = NodePath("../player6")
+teammate3 = NodePath("../player8")
+is_AI = true
+ball = NodePath("../ball")
+
+[node name="player8" parent="." node_paths=PackedStringArray("teammate1", "teammate2", "teammate3", "ball") instance=ExtResource("2_jyhfs")]
+transform = Transform3D(-1.72471, 0, 0.0285096, 0, 1.72495, 0, -0.0285096, 0, -1.72471, -2.07739, 1.01552, 0.0027473)
+teammate1 = NodePath("../player5")
+teammate2 = NodePath("../player6")
+teammate3 = NodePath("../player7")
+ball = NodePath("../ball")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -105,10 +144,18 @@ scale = Vector2(0.859375, 0.898438)
 texture_normal = ExtResource("3_sugp2")
 
 [node name="goal1" parent="." instance=ExtResource("6_tefeu")]
-transform = Transform3D(0.185135, 0, 0, 0, 0.144792, 0, 0, 0, 0.137285, -7.13573, 0.493562, -0.0094682)
+transform = Transform3D(-0.185135, 0, -1.20018e-08, 0, 0.144792, 0, 1.6185e-08, 0, -0.137285, 10.7283, 0.493562, -0.0094682)
 script = ExtResource("7_o6xl0")
 
 [node name="CollisionShape3D" parent="goal1/shoot_area" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99164, 0, 1.71777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99164, 0, 0.219735)
+
+[node name="goal2" parent="." instance=ExtResource("6_tefeu")]
+transform = Transform3D(0.185135, 0, 0, 0, 0.144792, 0, 0, 0, 0.137285, -11.1496, 0.493562, -0.0094682)
+script = ExtResource("7_o6xl0")
+
+[node name="CollisionShape3D" parent="goal2/shoot_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99164, 0, 0.116946)
 
 [editable path="goal1"]
+[editable path="goal2"]

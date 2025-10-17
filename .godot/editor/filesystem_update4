@@ -7,3 +7,4 @@ res://Scripts/player_states/player.gd
 res://Scripts/ball_states/ball_state_movement.gd
 res://Scripts/goal.gd
 res://Scripts/player_states/player_state_moving.gd
+res://Scripts/camera_3d.gd

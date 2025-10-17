@@ -5,43 +5,46 @@ extends CharacterBody3D
 @export var rotation_speed = 8.0
 @export var teammate1 = Node3D
 @export var teammate2 = Node3D
+@export var teammate3 = Node3D
 @export var is_AI = false
 @export var is_active = false
 @export var  is_possession = false
-var squad = []
+@export var goal_target = Node3D
 @export var ball = Node3D
-var speed = 1.5
-var AI_speed = 150
-
-
-
-var take_ball = false
-var ball_old_parent
-var ball_new_parent
 
 @onready var shoot = $"../UI/kick"
 @onready var pas = $"../UI/pass"
 @onready var target = $CollisionShape3D/body/target
 
 enum States {MOVING, TACKLING, PASSING, SHOOTING}
+
+var squad = []
+var speed = 2
+var AI_speed = 150
+var take_ball = false
+var ball_old_parent
+var ball_new_parent
 var current_state: PlayerState = null
 var state_factory := PlayerStateFactory.new()
 var AI_behavoir := AIBehavoir.new()
-var last_position := Vector3.ZERO
 var weigth_Sterring :=20.0
-@export var goal_target = Node3D
-@onready var teamate_distance =$teamate_distance
-var last_valid_position = global_transform.origin
+var spam_position := Vector3.ZERO
+var weight_on_duty_sterring := 0.0
+var DURATION_WEIGHT_CACHE :=200
+var time_cash_refresh := Time.get_ticks_msec()
+
 
 func _ready() -> void:
+	
 	ball = get_parent().get_child(1)
 	switch_state(States.MOVING)
 	look_at(ball.position)
 	setup_AI_Behavoir()
-	last_position = position
+	spam_position = position
 	squad.append(teammate1)
 	squad.append(teammate2)
-	
+	squad.append(teammate3)
+
 func setup_AI_Behavoir()->void:
 	AI_behavoir.setup(self,ball)
 	AI_behavoir.name = "AI_Behavoir"
@@ -58,66 +61,25 @@ func switch_state(state: States)->void:
 
 
 
+func _process(delta: float) -> void:
+	if Time.get_ticks_msec() -time_cash_refresh > DURATION_WEIGHT_CACHE:
+		time_cash_refresh
+		set_on_duty_weigth()
+	pass
 
 
 
-
-#func _on_area_3d_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
-	#print(body.name)
-	#is_AI = false
-	#if is_possession:
-		#print("possession")
-		#if body.is_in_group("ball"):
-			#ball_move()
-			#is_possession = true
-	#
-	#pass # Replace with function body.
-
-
-# In the object's script (e.g., a projectile)
-
-
-
-	
-
-
-#func _on_kick_pressed() -> void:
-	#shoot_ball()
-	#
-	#pass # Replace with function body.
-#
-#
-#func _on_pass_pressed() -> void:
-	#pass_ball()
-	#pass # Replace with function body.
-#
-#
-#func _on_spring_pressed() -> void:
-	#pass # Replace with function body.
-#func handle_ball_interaction(action):
-	#if has_ball and action == "shoot":
-		#shoot_ball()
-	#elif has_ball and action == "pass":
-		#pass_ball()
-
-
-#
-func distance_check():
-	if position.distance_to(ball.position)<teammate1.position.distance_to(ball.position) and position.distance_to(ball.position)<teammate2.position.distance_to(ball.position):
-	
-		weigth_Sterring =150
-	else: 
-		weigth_Sterring = 50
-	return weigth_Sterring
 func has_ball()->bool:
 	return ball.carrier == self
 
-func is_teammate_possession():
-	for team in squad:
-		if team.is_possession:
-			return true
 
-func is_teammate(body):
-	for team in squad:
-		if team == body:
-			return true
+func set_on_duty_weigth()->void:
+	var AI_playerS = squad.filter(
+		func(p:Player): return p.is_AI
+	)
+	AI_playerS.sort_custom(func(p1: Player, p2:Player):
+		return p1.spam_position.distance_to(ball.position)<p2.spam_position.distance_to(ball.position)
+		)
+	
+	for i in range(	AI_playerS.size()):
+		AI_playerS[i].weight_on_duty_sterring = 1 - ease(float(i)/10.0,0.1)

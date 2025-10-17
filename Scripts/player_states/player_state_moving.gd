@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		
 		handle_movement(delta)
-	player.last_valid_position = player.global_transform.origin
+	player.move_and_slide()
 func handle_movement(delta):
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -20,7 +20,7 @@ func handle_movement(delta):
 		input_dir = input_dir.normalized()
 		player.velocity.x = input_dir.x * move_speed
 		player.velocity.z = input_dir.z * move_speed
-		player.move_and_slide()
+		
 		player.look_at(player.global_position + input_dir, Vector3.UP)
 	else:
 		player.velocity = Vector3.ZERO
